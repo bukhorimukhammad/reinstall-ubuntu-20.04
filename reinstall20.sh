@@ -23,8 +23,15 @@ menuentry "Auto Reinstall Ubuntu 20.04" {
 }
 EOF
 
+echo "🧹 Bersihkan 40_custom bawaan..."
+echo "" > /etc/grub.d/40_custom
+chmod -x /etc/grub.d/40_custom
+
 echo "🔄 Update GRUB..."
 update-grub
 
-echo "✅ Reinstall entry sudah ditambahkan ke GRUB (via /boot/grub/custom.cfg)."
-echo "⚠️ Jalankan 'reboot' untuk mulai reinstall Ubuntu 20.04."
+echo "🎯 Set grub-reboot ke installer untuk reboot berikutnya..."
+grub-reboot "Auto Reinstall Ubuntu 20.04"
+
+echo "✅ Reinstall entry sudah ditambahkan ke GRUB."
+echo "⚠️ Jalankan 'reboot' sekarang untuk mulai reinstall Ubuntu 20.04."
