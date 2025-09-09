@@ -15,10 +15,10 @@ echo "📥 Download kernel & initrd..."
 wget -O /boot/linux $KERNEL_URL
 wget -O /boot/initrd.gz $INITRD_URL
 
-echo "📝 Tambahkan GRUB entry..."
-cat > /etc/grub.d/40_custom <<'EOF'
+echo "📝 Buat GRUB config manual..."
+cat > /boot/grub/custom.cfg <<EOF
 menuentry "Auto Reinstall Ubuntu 20.04" {
-    linux /boot/linux auto=true priority=critical url=https://raw.githubusercontent.com/bukhorimukhammad/reinstall-ubuntu-20.04/main/preseed.cfg
+    linux /boot/linux auto=true priority=critical url=$PRESEED_URL
     initrd /boot/initrd.gz
 }
 EOF
@@ -26,5 +26,5 @@ EOF
 echo "🔄 Update GRUB..."
 update-grub
 
-echo "✅ Reinstall entry sudah ditambahkan ke GRUB."
+echo "✅ Reinstall entry sudah ditambahkan ke GRUB (via /boot/grub/custom.cfg)."
 echo "⚠️ Jalankan 'reboot' untuk mulai reinstall Ubuntu 20.04."
