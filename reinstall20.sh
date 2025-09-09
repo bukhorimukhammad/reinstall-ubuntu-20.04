@@ -16,9 +16,9 @@ wget -O /boot/linux $KERNEL_URL
 wget -O /boot/initrd.gz $INITRD_URL
 
 echo "📝 Tambahkan GRUB entry..."
-cat > /etc/grub.d/40_custom <<EOF
+cat > /etc/grub.d/40_custom <<'EOF'
 menuentry "Auto Reinstall Ubuntu 20.04" {
-    linux /boot/linux auto=true priority=critical url=$PRESEED_URL
+    linux /boot/linux auto=true priority=critical url=https://raw.githubusercontent.com/bukhorimukhammad/reinstall-ubuntu-20.04/main/preseed.cfg
     initrd /boot/initrd.gz
 }
 EOF
